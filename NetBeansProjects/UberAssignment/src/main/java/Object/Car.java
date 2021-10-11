@@ -44,7 +44,7 @@ public class Car {
         this.serialNumber = serialNumber;
         this.maintainCertValid = maintainCertValid;
         this.city = city;
-        this.lastUpdatedTime = LocalDateTime.now();
+        //this.lastUpdatedTime = LocalDateTime.now();
     }
 
     

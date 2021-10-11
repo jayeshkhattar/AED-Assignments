@@ -7,6 +7,7 @@ package com.mycompany.uberassignment.ui;
 import Object.Car;
 import Object.CarList;
 import java.lang.reflect.Field;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -139,11 +140,11 @@ public class ListCarsJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Owner Name", "Make", "Model", "Year", "City", "Seat Count", "Serial Number", "Available", "Certificate"
+                "Owner Name", "Make", "Model", "Year", "City", "Seat Count", "Serial Number", "Available", "Certificate", "Last Updated Time"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -293,20 +294,6 @@ public class ListCarsJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFirstCarAvailable)
-                        .addGap(397, 397, 397)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(btnDelete))
-                            .addComponent(btnEdit)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(186, 186, 186)
                         .addComponent(comboFieldList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -329,8 +316,21 @@ public class ListCarsJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(294, 294, 294)
                         .addComponent(lblListCars, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(updatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(308, 308, 308))
+                    .addComponent(updatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnFirstCarAvailable)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEdit)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnDelete))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 852, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(387, 387, 387))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,19 +353,14 @@ public class ListCarsJPanel extends javax.swing.JPanel {
                     .addComponent(btnFilterClear))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDelete)
-                            .addComponent(btnEdit)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnFirstCarAvailable)
-                            .addComponent(jLabel1))))
-                .addGap(28, 28, 28)
-                .addComponent(updatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFirstCarAvailable)
+                    .addComponent(jLabel1)
+                    .addComponent(btnEdit)
+                    .addComponent(btnDelete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(updatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -375,7 +370,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,18 +395,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) carList.getModel();
         model.setRowCount(0);
         for(Car c : carLst.getCarLst()) {
-            
-            Object[] obj = new Object[9];
-            obj[0] = c;
-            obj[1] = c.getMake();
-            obj[2] = c.getModel();
-            obj[3] = c.getYear();
-            obj[4] = c.getCity();
-            obj[5] = c.getSeatCount();
-            obj[6] = c.getSerialNumber();
-            obj[7] = c.getAvailabiltyStatusStr();
-            obj[8] = c.isMaintainCertValidStr();
-            model.addRow(obj);
+            model = createCar(model, c);
         }
     }//GEN-LAST:event_comboSortListActionPerformed
 
@@ -422,17 +406,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         for(Car c : carLst.getCarLst()) {
             if(c.getMake().contains(searchTxt) || c.getModel().contains(searchTxt) || c.getCity().contains(searchTxt) 
                     || c.getSerialNumber().contains(searchTxt)) {
-                Object[] obj = new Object[9];
-                obj[0] = c;
-                obj[1] = c.getMake();
-                obj[2] = c.getModel();
-                obj[3] = c.getYear();
-                obj[4] = c.getCity();
-                obj[5] = c.getSeatCount();
-                obj[6] = c.getSerialNumber();
-                obj[7] = c.getAvailabiltyStatusStr();
-                obj[8] = c.isMaintainCertValidStr();
-                model.addRow(obj);
+                model = createCar(model, c);
             }
         }
         if(model.getRowCount() == 0) {
@@ -504,6 +478,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         error = car.setMaintainCertValid(boolCertValid.isSelected());
         if(error == "")
         error = car.setAvailabiltyStatus(car.getAvailabiltyStatus());
+        car.setLastUpdatedTime(LocalDateTime.now());
 
         String message = error.equals("") ? "Car Info Updated." : error;
 
@@ -551,17 +526,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
                 break;
             }
         }
-        Object[] obj = new Object[9];
-        obj[0] = c;
-        obj[1] = c.getMake();
-        obj[2] = c.getModel();
-        obj[3] = c.getYear();
-        obj[4] = c.getCity();
-        obj[5] = c.getSeatCount();
-        obj[6] = c.getSerialNumber();
-        obj[7] = c.getAvailabiltyStatusStr();
-        obj[8] = c.isMaintainCertValidStr();
-        model.addRow(obj);
+        model = createCar(model, c);
         btnFilter.setEnabled(true);
         txtSearchFilter.setVisible(false);
         comboValueDependent.setVisible(false);
@@ -721,18 +686,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for(Car c : carLst.getCarLst()) {
-            Object[] obj = new Object[9];
-            obj[0] = c;
-            obj[1] = c.getMake();
-            obj[2] = c.getModel();
-            obj[3] = c.getYear();
-            obj[4] = c.getCity();
-            obj[5] = c.getSeatCount();
-            obj[6] = c.getSerialNumber();
-            obj[7] = c.getAvailabiltyStatusStr();
-            obj[8] = c.isMaintainCertValidStr();
-            
-            model.addRow(obj);
+            model = createCar(model, c);
         }
         btnFilterClear.setEnabled(false);
         btnFilter.setEnabled(false);
@@ -779,7 +733,7 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         cityList.add("Chicago");
 
     }
-    public String getFieldValue(Car c, String fieldVal) {
+    private String getFieldValue(Car c, String fieldVal) {
         if(fieldVal == "Make") 
             return c.getMake();
         else if(fieldVal == "Model") 
@@ -797,5 +751,21 @@ public class ListCarsJPanel extends javax.swing.JPanel {
         else if(fieldVal == "Serial Number")
             return c.getSerialNumber();
         return null;
+    }
+    
+    private DefaultTableModel createCar(DefaultTableModel model, Car c) {
+        Object[] obj = new Object[10];
+        obj[0] = c;
+        obj[1] = c.getMake();
+        obj[2] = c.getModel();
+        obj[3] = c.getYear();
+        obj[4] = c.getCity();
+        obj[5] = c.getSeatCount();
+        obj[6] = c.getSerialNumber();
+        obj[7] = c.getAvailabiltyStatusStr();
+        obj[8] = c.isMaintainCertValidStr();
+        obj[9] = c.getLastUpdatedTime();
+        model.addRow(obj);
+        return model;
     }
 }
