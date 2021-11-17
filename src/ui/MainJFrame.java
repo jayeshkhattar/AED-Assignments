@@ -124,8 +124,25 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-       
+      
+       if(userNameJTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null,"Username and Password field's cannot be empty");
+            return;
+        }
 
+        else if(system.getUserAccountDirectory().authenticateUser(userNameJTextField.getText(), passwordField.getText()) == null) {
+            JOptionPane.showMessageDialog(null,"Invalid UserName");
+            return;
+        }
+       UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userNameJTextField.getText(), passwordField.getText());
+
+        System.out.println("EcoSYSTEM MAIN" + system.toString() + system.getUserAccountDirectory().getUserAccountList().size());
+
+        CardLayout layout = (CardLayout) container.getLayout();
+        //container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, system, system.customerDirectory, system.restaurantDirectory, system.deliveryManDirectory, system.menuDirectory, system.orderDirectory));
+        layout.next(container);
+        logoutJButton.setEnabled(true);
+        loginJButton.setEnabled(false);
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
