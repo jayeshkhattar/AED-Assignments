@@ -33,7 +33,8 @@ public class DB4OUtil {
     }
 
     private ObjectContainer createConnection() {
-//        try {
+        try {
+
             EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             config.common().add(new TransparentPersistenceSupport());
@@ -45,12 +46,11 @@ public class DB4OUtil {
             //Register your top most Class here
             config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
 
-//            ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             return db;
-//        } catch (Exception ex) {
-//            System.out.print(ex.getMessage());
-//        }
-//        return null;
+        } catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
+        return null;
     }
 
     public synchronized void storeSystem(EcoSystem system) {
@@ -61,23 +61,16 @@ public class DB4OUtil {
     }
     
     public EcoSystem retrieveSystem(){
-//        try {
-            ObjectContainer conn = createConnection();
-            System.out.println("---"+conn);
-            ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
-            EcoSystem system;
-            if (systems.size() == 0){
-                system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
-            }
-            else{
-                system = systems.get(systems.size() - 1);
-            }
-            conn.close();
-            return system;
-/*        }
-        catch(Exception e) {
-            
+        ObjectContainer conn = createConnection();
+        ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
+        EcoSystem system;
+        if (systems.isEmpty()){
+            system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
-        return null;
-*/    }
+        else{
+            system = systems.get(systems.size() - 1);
+        }
+        conn.close();
+        return system;
+    }
 }
