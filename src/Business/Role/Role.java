@@ -5,24 +5,22 @@
 package Business.Role;
 
 import Business.Customer.CustomerDirectory;
-import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
-import Business.Menu.MenuDirectory;
-import Business.Order.OrderDirectory;
 
 import Business.Organization;
 import Business.Restaurant.RestaurantDirectory;
 import Business.UserAccount.UserAccount;
-import java.awt.Component;
 import javax.swing.JPanel;
+import Business.DeliveryMan.DeliveryManDirectory;
+import Business.Menu.MenuDirectory;
+import Business.Order.OrderDirectory;
 
 /**
  *
  * @author raunak
  */
 public abstract class Role {
-
-    public abstract Component createWorkArea(JPanel container, UserAccount userAccount, EcoSystem system, CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, DeliveryManDirectory deliveryManDirectory, MenuDirectory menuDirectory, OrderDirectory orderDirectory);    
+    
     public enum RoleType{
         RestaurantAdmin("RestaurantAdmin"),
         Customer("Customer"),
@@ -44,6 +42,10 @@ public abstract class Role {
         }
     }
     
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business, 
+            CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, 
+            DeliveryManDirectory deliveryManDirectory, MenuDirectory menuDirectory, OrderDirectory oderDirectory);
+
     @Override
     public String toString() {
         return this.getClass().getName();

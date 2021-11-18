@@ -10,7 +10,8 @@ package Business.Customer;
  * @author harold
  */
 public class Customer {
-        private String name;
+    
+    private String name;
     private String email;
     private String phoneNumber;
     private int age;
@@ -78,5 +79,6 @@ public class Customer {
     public String toString() {
         return userName;
     }
+    
     
 }

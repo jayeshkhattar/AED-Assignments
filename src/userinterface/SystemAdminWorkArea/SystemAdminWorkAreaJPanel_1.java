@@ -24,7 +24,7 @@ import javax.swing.tree.DefaultTreeModel;
  *
  * @author MyPC1
  */
-public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
+public class SystemAdminWorkAreaJPanel_1 extends javax.swing.JPanel {
 
     /**
      * Creates new form SystemAdminWorkAreaJPanel
@@ -35,7 +35,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     RestaurantDirectory restaurantDirectory;
     DeliveryManDirectory deliveryManDirectory;
     
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, DeliveryManDirectory deliveryManDirectory) {
+    public SystemAdminWorkAreaJPanel_1(JPanel userProcessContainer, EcoSystem ecosystem, CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, DeliveryManDirectory deliveryManDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
