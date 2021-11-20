@@ -75,7 +75,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 51));
 
         tblMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

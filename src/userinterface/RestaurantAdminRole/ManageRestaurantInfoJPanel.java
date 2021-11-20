@@ -84,7 +84,7 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 51));
 
         tblRestaurant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,9 +136,7 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
                         .addGap(82, 82, 82)
                         .addComponent(jLabel1))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(159, 159, 159)))
+                    .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

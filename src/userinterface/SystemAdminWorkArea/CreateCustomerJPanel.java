@@ -68,7 +68,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 51));
         setForeground(new java.awt.Color(255, 255, 51));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N

@@ -61,7 +61,7 @@ public class ModifyRestaurantInfoJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 51));
 
         btnCreate.setText("Modify");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
