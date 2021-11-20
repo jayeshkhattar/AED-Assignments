@@ -29,8 +29,8 @@ public class CustomerDirectory {
         this.customerDirectory = customerDirectory;
     }
     
-    public Customer newCustomer(String name, String email, String phoneNumber, int age, String homeAddress, String userName){
-        Customer customer = new Customer(name, email, phoneNumber, age, homeAddress, userName);
+    public Customer newCustomer(String name, String email, String phoneNumber, int age, String address, String username){
+        Customer customer = new Customer(name, email, phoneNumber, age, address, username);
         customerDirectory.add(customer);
         return customer;
     }

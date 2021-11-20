@@ -11,12 +11,12 @@ package Business.Menu;
  */
 public class Menu {
     private String itemName;
-    private double price;
+    private double ItemPrice;
     private String restaurantName;
     
     public Menu(String itemName, double price, String restaurantName) {
         this.itemName = itemName;
-        this.price = price;
+        this.ItemPrice = price;
         this.restaurantName = restaurantName;
     }
 
@@ -28,12 +28,12 @@ public class Menu {
         this.itemName = itemName;
     }
 
-    public double getPrice() {
-        return price;
+    public double getItemPrice() {
+        return ItemPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setItemPrice(double ItemPrice) {
+        this.ItemPrice = ItemPrice;
     }
 
     public String getRestaurantName() {

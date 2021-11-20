@@ -52,7 +52,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 row[1] = order.getMessage();
                 row[2] = order.getOrderStatus();
                 row[3] = order.getCustomer().getName();
-                row[4] = order.getCustomer().getHomeAddress();
+                row[4] = order.getCustomer().getAddress();
                 row[5] = order.getRestaurant().getRestaurantName();
                 row[6] = order.getRestaurant().getAddress();
                 model.addRow(row);
@@ -193,7 +193,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[6];
                 row[0] = order;
                 row[1] = order.getCustomer().getName();
-                row[2] = order.getCustomer().getHomeAddress();
+                row[2] = order.getCustomer().getAddress();
                 row[3] = order.getRestaurant().getRestaurantName();
                 row[4] = order.getRestaurant().getAddress();
                 row[5] = order.getOrderStatus();

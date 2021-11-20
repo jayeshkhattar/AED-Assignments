@@ -53,7 +53,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 row[0] = order;
                 row[1] = order.getMenu().getItemName();
                 row[2] = order.getQuantity();
-                row[3] = order.getQuantity() * order.getMenu().getPrice();
+                row[3] = order.getQuantity() * order.getMenu().getItemPrice();
                 row[4] = order.getOrderStatus();
                 dtm.addRow(row);
             }

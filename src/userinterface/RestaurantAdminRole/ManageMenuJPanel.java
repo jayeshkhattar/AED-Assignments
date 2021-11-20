@@ -49,7 +49,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
             if(menu.getRestaurantName().equals(account.getEmployee().getName())) {
                 Object [] row = new Object[2];
                 row[0] = menu;
-                row[1] = menu.getPrice();
+                row[1] = menu.getItemPrice();
                 dtm.addRow(row);
             }
         }

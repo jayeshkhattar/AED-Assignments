@@ -68,7 +68,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             if(restaurant.getRestaurantName().equals(menu.getRestaurantName())) {
                 Object [] row = new Object[2];
                 row[0] = menu;
-                row[1] = menu.getPrice();
+                row[1] = menu.getItemPrice();
                 dtm.addRow(row);
             }
         }
@@ -92,7 +92,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
                 Object[] row = new Object[8];
                 row[0] = order;
                 row[1] = order.getMenu().getItemName();
-                row[2] = order.getQuantity() * order.getMenu().getPrice();
+                row[2] = order.getQuantity() * order.getMenu().getItemPrice();
                 row[3] = order.getRestaurant().getRestaurantName();
                 row[4] = order.getMessage();
                 row[5] = order.getCustomer().getName();

@@ -41,7 +41,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
             row[0] = deliveryMan;
             row[1] = deliveryMan.getEmail();
             row[2] = deliveryMan.getAddress();
-            row[3] = deliveryMan.getPhoneNumber();
+            row[3] = deliveryMan.getPhone();
             row[4] = deliveryMan.getAge();
             dtm.addRow(row);
         }
@@ -55,7 +55,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
             row[0] = deliveryMan;
             row[1] = deliveryMan.getEmail();
             row[2] = deliveryMan.getAddress();
-            row[3] = deliveryMan.getPhoneNumber();
+            row[3] = deliveryMan.getPhone();
             row[4] = deliveryMan.getAge();
             dtm.addRow(row);
         }

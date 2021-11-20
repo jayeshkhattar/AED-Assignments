@@ -13,18 +13,18 @@ public class Customer {
     
     private String name;
     private String email;
-    private String phoneNumber;
     private int age;
-    private String homeAddress;
-    private String userName;
+    private String address;
+    private String phone;
+    private String username;
    
-    public Customer(String name, String email, String phoneNumber, int age, String homeAddress, String userName) {
+    public Customer(String name, String email, String phone, int age, String address, String username) {
         this.name = name;
         this.email = email;
         this.age = age;
-        this.homeAddress = homeAddress;
-        this.userName = userName;
-        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.username = username;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -43,12 +43,12 @@ public class Customer {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public int getAge() {
@@ -59,25 +59,25 @@ public class Customer {
         this.age = age;
     }
 
-    public String getHomeAddress() {
-        return homeAddress;
+    public String getUsername() {
+        return username;
     }
 
-    public void setHomeAddress(String homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
     
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
-        return userName;
+        return username;
     }
     
     

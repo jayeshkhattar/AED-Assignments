@@ -258,7 +258,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             return;
         }
         for(Customer customer : customerDirectory.getCustomerDirectory()) {
-            if(customer.getPhoneNumber().equals(phoneNumber)) {
+            if(customer.getPhone().equals(phoneNumber)) {
                 JOptionPane.showMessageDialog(null, "Phone Number already exists");
             }
         }

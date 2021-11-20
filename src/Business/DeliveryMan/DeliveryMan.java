@@ -11,16 +11,16 @@ package Business.DeliveryMan;
  */
 public class DeliveryMan {
     private String name;
+    private String phone;
     private String address;
-    private String email;
-    private String phoneNumber;
     private int age;
+    private String email;
     
     public DeliveryMan(String name, String address, String email, String phoneNumber, int age) {
         this.name = name;
         this.address = address;
         this.age = age;
-        this.phoneNumber = phoneNumber;
+        this.phone = phoneNumber;
         this.email = email;
     }
 
@@ -48,20 +48,20 @@ public class DeliveryMan {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
     
     @Override

@@ -43,8 +43,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             row[0] = customer;
             row[1] = customer.getName();
             row[2] = customer.getEmail();
-            row[3] = customer.getHomeAddress();
-            row[4] = customer.getPhoneNumber();
+            row[3] = customer.getAddress();
+            row[4] = customer.getPhone();
             row[5] = customer.getAge();
             dtm.addRow(row);
         }
@@ -58,8 +58,8 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             row[0] = customer;
             row[1] = customer.getName();
             row[2] = customer.getEmail();
-            row[3] = customer.getHomeAddress();
-            row[4] = customer.getPhoneNumber();
+            row[3] = customer.getAddress();
+            row[4] = customer.getPhone();
             row[5] = customer.getAge();
             dtm.addRow(row);
         }

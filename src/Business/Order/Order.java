@@ -5,11 +5,11 @@
  */
 package Business.Order;
 
+import Business.Restaurant.Restaurant;
 import Business.Customer.Customer;
 import Business.DeliveryMan.DeliveryMan;
-import Business.Menu.Menu;
-import Business.Restaurant.Restaurant;
 import Business.WorkQueue.WorkRequest;
+import Business.Menu.Menu;
 
 /**
  *

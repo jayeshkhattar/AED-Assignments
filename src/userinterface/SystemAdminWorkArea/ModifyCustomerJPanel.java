@@ -40,8 +40,8 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
         txtName.setText(customer.getName());
         txtEmailAddress.setText(customer.getEmail());
         txtAge.setText(String.valueOf(customer.getAge()));
-        txtHomeAddress.setText(customer.getHomeAddress());
-        txtPhoneNumber.setText(customer.getPhoneNumber());
+        txtHomeAddress.setText(customer.getAddress());
+        txtPhoneNumber.setText(customer.getPhone());
         
     }
 
@@ -214,7 +214,7 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
             return;
         }
         for(Customer customer : customerDirectory.getCustomerDirectory()) {
-            if(customer.getPhoneNumber().equals(phoneNumber) && this.customer != customer) {
+            if(customer.getPhone().equals(phoneNumber) && this.customer != customer) {
                 JOptionPane.showMessageDialog(null, "Phone Number already exists");
             }
         }
@@ -233,8 +233,8 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
         String homeAddress = txtHomeAddress.getText();
 
         customer.setAge(age);
-        customer.setPhoneNumber(phoneNumber);
-        customer.setHomeAddress(homeAddress);
+        customer.setPhone(phoneNumber);
+        customer.setAddress(homeAddress);
 
         JOptionPane.showMessageDialog(null, "Customer Profile Updated");
 

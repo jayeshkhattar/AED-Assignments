@@ -267,7 +267,7 @@ public class CreateDeliveryManJPanel extends javax.swing.JPanel {
             return;
         }
         for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
-            if(deliveryMan.getPhoneNumber().equals(phoneNumber)) {
+            if(deliveryMan.getPhone().equals(phoneNumber)) {
                 JOptionPane.showMessageDialog(null, "Phone Number already exists");
                 return;
             }

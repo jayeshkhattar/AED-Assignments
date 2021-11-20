@@ -34,7 +34,7 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
         this.deliveryMan = deliveryMan;
         txtName.setText(deliveryMan.getName());
         txtHomeAddress.setText(deliveryMan.getAddress());
-        txtPhoneNumber.setText(deliveryMan.getPhoneNumber());
+        txtPhoneNumber.setText(deliveryMan.getPhone());
         txtEmailAddress.setText(deliveryMan.getEmail());
         txtAge.setText(String.valueOf(deliveryMan.getAge()));
    }
@@ -201,7 +201,7 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
             return;
         }
         for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
-            if(deliveryMan.getPhoneNumber().equals(phoneNumber) && this.deliveryMan != deliveryMan) {
+            if(deliveryMan.getPhone().equals(phoneNumber) && this.deliveryMan != deliveryMan) {
                 JOptionPane.showMessageDialog(null, "Phone Number already exists");
             }
         }
@@ -220,7 +220,7 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
         String homeAddress = txtHomeAddress.getText();
 
         deliveryMan.setAge(age);
-        deliveryMan.setPhoneNumber(phoneNumber);
+        deliveryMan.setPhone(phoneNumber);
         deliveryMan.setAddress(homeAddress);
 
         JOptionPane.showMessageDialog(null, "DeliveryMan Profile Updated");
