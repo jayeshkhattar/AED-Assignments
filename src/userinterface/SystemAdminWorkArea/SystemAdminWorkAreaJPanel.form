@@ -49,8 +49,9 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="275" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="254" max="-2" attributes="0"/>
+                      <EmptySpace pref="89" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -101,7 +102,7 @@
                                   <Component id="btnCustomer" linkSize="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnDelivery" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="282" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel2" max="32767" attributes="0"/>
                       </Group>
@@ -162,7 +163,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnDelivery">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manage Deliveryman"/>
+                <Property name="text" type="java.lang.String" value="Manage Deliverymen"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeliveryActionPerformed"/>
@@ -174,9 +175,9 @@
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Arial" size="12" style="1"/>
+                  <Font name="Arial" size="24" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Food Delivery System"/>
+                <Property name="text" type="java.lang.String" value="Welcome to WholeFoods Delivery System"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -5,6 +5,7 @@
  */
 package userinterface.RestaurantAdminRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Restaurant.Restaurant;
 import Business.Restaurant.RestaurantDirectory;
@@ -25,10 +26,11 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private RestaurantDirectory restaurantDirectory;
     private Restaurant restaurant;
+    private DB4OUtil dB4OUtil;
     /**
      * Creates new form ManageRestaurantInforJPanel
      */
-    public ManageRestaurantInfoJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecoSystem, RestaurantDirectory restaurantDirectory) {
+    public ManageRestaurantInfoJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecoSystem, RestaurantDirectory restaurantDirectory, DB4OUtil dB4OUtil) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
@@ -42,6 +44,7 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
                 break;
             }
         }
+        this.dB4OUtil = dB4OUtil;
         populateTable();
     }
     
@@ -66,6 +69,7 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
         row[1] = restaurant.getAddress();
         row[2] = restaurant.getManagerName();
         row[3] = restaurant.getPhoneNumber();
+//        row[4] = restaurant.ge
         dtm.addRow(row);
     }
 
@@ -88,17 +92,17 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
 
         tblRestaurant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Restaurant Name ", "Address", "Manager Name", "Mobile Number"
+                "Restaurant Name ", "Address", "Manager Name", "Mobile Number", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -114,14 +118,14 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBack.setText("<<Back");
+        btnBack.setText("<<");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 32)); // NOI18N
         jLabel1.setText("Manage Restaurant Info");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -129,15 +133,19 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(82, 82, 82)
-                        .addComponent(jLabel1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(131, Short.MAX_VALUE))
+                        .addGap(319, 319, 319)
+                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(136, 136, 136)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,11 +154,11 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(jLabel1))
-                .addGap(63, 63, 63)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(45, 45, 45)
                 .addComponent(btnModify)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,7 +170,7 @@ public class ManageRestaurantInfoJPanel extends javax.swing.JPanel {
             return;
         }
         Restaurant restaurant = (Restaurant)tblRestaurant.getValueAt(selectedRow,0);
-        ModifyRestaurantInfoJPanel modifyManager = new ModifyRestaurantInfoJPanel(userProcessContainer, ecoSystem, restaurantDirectory, restaurant);
+        ModifyRestaurantInfoJPanel modifyManager = new ModifyRestaurantInfoJPanel(userProcessContainer, ecoSystem, restaurantDirectory, restaurant, dB4OUtil);
         userProcessContainer.add("ModifyRestaurantInfoJPanel",modifyManager);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

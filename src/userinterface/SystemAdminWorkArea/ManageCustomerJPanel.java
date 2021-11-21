@@ -7,6 +7,7 @@ package userinterface.SystemAdminWorkArea;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
+import Business.DB4OUtil.DB4OUtil;
 import javax.swing.JPanel;
 import Business.EcoSystem;
 import java.awt.CardLayout;
@@ -22,15 +23,17 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer; 
     private EcoSystem ecoSystem; 
     private CustomerDirectory customerDirectory;
+    private DB4OUtil dB4OUtil;
     
     /**
      * Creates new form ManageCustomer
      */
-    public ManageCustomerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CustomerDirectory customerDirectory) {
+    public ManageCustomerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CustomerDirectory customerDirectory, DB4OUtil dB4OUtil) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecoSystem = ecoSystem;
         this.customerDirectory = ecoSystem.getCustomerDirectory();
+        this.dB4OUtil = dB4OUtil;
         populateTable();
         
     }
@@ -42,24 +45,9 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             Object [] row = new Object[6];
             row[0] = customer;
             row[1] = customer.getName();
-            row[2] = customer.getEmail();
-            row[3] = customer.getAddress();
-            row[4] = customer.getPhone();
-            row[5] = customer.getAge();
-            dtm.addRow(row);
-        }
-    }
-    
-    public void refreshTable() {
-        DefaultTableModel dtm = (DefaultTableModel) tblCustomer.getModel();
-        dtm.setRowCount(0);
-        for(Customer customer : ecoSystem.getCustomerDirectory().getCustomerDirectory()){
-            Object [] row = new Object[6];
-            row[0] = customer;
-            row[1] = customer.getName();
-            row[2] = customer.getEmail();
-            row[3] = customer.getAddress();
-            row[4] = customer.getPhone();
+            row[2] = customer.getAddress();
+            row[3] = customer.getPhone();
+            row[4] = customer.getEmail();
             row[5] = customer.getAge();
             dtm.addRow(row);
         }
@@ -84,7 +72,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 51));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 32)); // NOI18N
         jLabel1.setText("Manage Customer");
 
         tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
@@ -95,7 +83,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Username", "Name ", "Email Address", "Address", "Mobile Number", "Age"
+                "Username", "Name ", "Address", "Mobile Number", "Email Address", "Age"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -108,28 +96,28 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblCustomer);
 
-        btnModify.setText("Modify Customer");
+        btnModify.setText("Update");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
             }
         });
 
-        btnCreate.setText("Create Customer");
+        btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
 
-        btnDelete.setText("Delete Customer");
+        btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        btnBack.setText("<<Back");
+        btnBack.setText("<<");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -142,19 +130,20 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(137, 137, 137)
-                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(148, 148, 148)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnCreate)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnModify)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnDelete))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnBack)
+                            .addGap(183, 183, 183)
+                            .addComponent(jLabel1))))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,14 +152,14 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnBack))
-                .addGap(63, 63, 63)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete)
                     .addComponent(btnCreate)
-                    .addComponent(btnModify))
-                .addContainerGap(240, Short.MAX_VALUE))
+                    .addComponent(btnModify)
+                    .addComponent(btnDelete))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(262, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,7 +171,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
             return;
         }
         Customer customer = (Customer)tblCustomer.getValueAt(selectedRow,0);
-        ModifyCustomerJPanel modifyCustomer = new ModifyCustomerJPanel(userProcessContainer, ecoSystem, customerDirectory, customer);
+        ModifyCustomerJPanel modifyCustomer = new ModifyCustomerJPanel(userProcessContainer, ecoSystem, customerDirectory, customer, dB4OUtil);
         userProcessContainer.add("ModifyCustomersJPanel",modifyCustomer);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -190,7 +179,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        CreateCustomerJPanel createCustomer = new CreateCustomerJPanel(userProcessContainer, ecoSystem, customerDirectory);
+        CreateCustomerJPanel createCustomer = new CreateCustomerJPanel(userProcessContainer, ecoSystem, customerDirectory, dB4OUtil);
         userProcessContainer.add("CreateCustomersJPanel",createCustomer);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -207,6 +196,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         
         Customer customer = (Customer) tblCustomer.getValueAt(selectedRow, 0);
         customerDirectory.removeCustomer(customer);
+        dB4OUtil.storeSystem(ecoSystem);
         populateTable();
         
     }//GEN-LAST:event_btnDeleteActionPerformed

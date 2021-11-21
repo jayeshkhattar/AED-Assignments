@@ -26,6 +26,13 @@ public class Order extends WorkRequest {
     private Menu menu;
     private String result;
     private boolean assign;
+    
+    public static final String orderPlaced = "Order Placed";
+    public static final String orderAccepted = "Order Accepted";
+    public static final String orderReady = "Order Ready for pick up";
+    public static final String orderOnDelivery = "Order out on Delivery";
+    public static final String orderRejected = "Order Rejected";
+    public static final String orderDelivered = "Order Delivered";
 
     public boolean isAssign() {
         return assign;

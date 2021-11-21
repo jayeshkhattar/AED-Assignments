@@ -4,6 +4,7 @@
  */
 package userinterface.DeliveryManRole;
 
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
 import Business.Order.Order;
@@ -27,11 +28,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private DeliveryManDirectory deliveryManDirectory;
     private OrderDirectory orderDirectory;
-    
+    private DB4OUtil dB4OUtil;
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business, DeliveryManDirectory deliveryManDirectory, OrderDirectory orderDirectory) {
+    public DeliveryManWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem business, DeliveryManDirectory deliveryManDirectory, OrderDirectory orderDirectory, DB4OUtil dB4OUtil) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -39,6 +40,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
         this.business = business;
         this.orderDirectory = business.getOrderDirectory();
         this.deliveryManDirectory = business.getDeliveryManDirectory();
+        this.dB4OUtil = dB4OUtil;
         populateTable();
     }
     
@@ -116,7 +118,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 1060, 96));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 1060, 96));
 
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +126,7 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
                 assignJButtonActionPerformed(evt);
             }
         });
-        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -160,11 +162,11 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
             tblDeliveryMan.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 1060, 180));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 1060, 180));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 32)); // NOI18N
         jLabel1.setText("Delivery Man Page");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed

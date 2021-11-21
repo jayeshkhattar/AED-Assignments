@@ -6,6 +6,7 @@ package userinterface.CustomerRole;
 
 import Business.Customer.Customer;
 import Business.Customer.CustomerDirectory;
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.EcoSystem;
 import Business.Menu.Menu;
@@ -36,12 +37,14 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private MenuDirectory menuDirectory;
     private OrderDirectory orderDirectory;
     private static int count = 1;
+    private DB4OUtil dB4OUtil;
+    
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
     public CustomerAreaJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem ecoSystem, 
             CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, 
-            DeliveryManDirectory deliveryManDirectory, MenuDirectory menuDirectory, OrderDirectory orderDirectory) {
+            DeliveryManDirectory deliveryManDirectory, MenuDirectory menuDirectory, OrderDirectory orderDirectory, DB4OUtil dB4OUtil) {
         initComponents();
         
         this.userProcessContainer = userProcessContainer;
@@ -55,8 +58,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(account.getUsername());
         populateRequestTable();
         populateRestaurantCombo();
-        
-        
+        this.dB4OUtil = dB4OUtil;
     }
     
     public void populateTable() {

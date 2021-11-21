@@ -10,6 +10,7 @@ import Business.EcoSystem;
 
 import Business.Organization;
 import Business.Customer.CustomerDirectory;
+import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
 import Business.Restaurant.Restaurant;
@@ -34,14 +35,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     CustomerDirectory customerDirectory;
     RestaurantDirectory restaurantDirectory;
     DeliveryManDirectory deliveryManDirectory;
+    DB4OUtil dB4OUtil;
     
-    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, DeliveryManDirectory deliveryManDirectory) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem ecosystem, CustomerDirectory customerDirectory, RestaurantDirectory restaurantDirectory, DeliveryManDirectory deliveryManDirectory, DB4OUtil dB4OUtil) {
         initComponents();
+        this.dB4OUtil = dB4OUtil;
         this.userProcessContainer = userProcessContainer;
-        this.ecosystem = ecosystem;
-        this.customerDirectory = ecosystem.getCustomerDirectory();
-        this.deliveryManDirectory = ecosystem.getDeliveryManDirectory();
-        this.restaurantDirectory = ecosystem.getRestaurantDirectory();
+        this.ecosystem = dB4OUtil.retrieveSystem();
+        this.customerDirectory = this.ecosystem.getCustomerDirectory();
+        this.deliveryManDirectory = this.ecosystem.getDeliveryManDirectory();
+        this.restaurantDirectory = this.ecosystem.getRestaurantDirectory();
         populateTreeData();
         //lblSelectedNode.setText();
         //System.out.println("EcoSYSTEM MAIN" + ecosystem.toString() + ecosystem.getCustomerDirectory().getCustomerDirectory().size());
@@ -49,9 +52,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateTreeData(){
         DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-        
-       // Add the code for draw your system structure shown by JTree
-       
+               
         
         DefaultMutableTreeNode networks=new DefaultMutableTreeNode("System Admin");
         DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
@@ -173,8 +174,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 120, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
@@ -197,7 +199,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDelivery.setText("Manage Deliveryman");
+        btnDelivery.setText("Manage Deliverymen");
         btnDelivery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeliveryActionPerformed(evt);
@@ -205,8 +207,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setText("Food Delivery System");
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setText("Welcome to WholeFoods Delivery System");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -220,7 +222,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(btnRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCustomer)
                             .addComponent(btnDelivery))
-                        .addGap(0, 282, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -259,21 +261,21 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
 
-        ManageCustomerJPanel mcjp = new ManageCustomerJPanel(userProcessContainer, ecosystem, customerDirectory);
+        ManageCustomerJPanel mcjp = new ManageCustomerJPanel(userProcessContainer, ecosystem, customerDirectory, dB4OUtil);
         userProcessContainer.add("ManageCustomersJPanel",mcjp);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurantActionPerformed
-        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(userProcessContainer, ecosystem, restaurantDirectory);
+        ManageRestaurantJPanel mrjp = new ManageRestaurantJPanel(userProcessContainer, ecosystem, restaurantDirectory, dB4OUtil);
         userProcessContainer.add("ManageRestaurantJPanel",mrjp);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnRestaurantActionPerformed
 
     private void btnDeliveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveryActionPerformed
-       ManageDeliveryManJPanel mdmjp = new ManageDeliveryManJPanel(userProcessContainer, ecosystem, deliveryManDirectory);
+       ManageDeliveryManJPanel mdmjp = new ManageDeliveryManJPanel(userProcessContainer, ecosystem, deliveryManDirectory, dB4OUtil);
        userProcessContainer.add("ManageDeliveryManJPanel", mdmjp);
        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);

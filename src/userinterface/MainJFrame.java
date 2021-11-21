@@ -74,7 +74,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         loginJLabel = new javax.swing.JLabel();
         logoutJButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lblLoginLabel = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,7 +106,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("<html>\nWelcome!! \n<br/>Please login to continue\n</html>");
+        lblLoginLabel.setText("<html>\nWelcome!! \n<br/>Please login to continue\n</html>");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,14 +125,14 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addGap(26, 26, 26)
                             .addComponent(loginJLabel)))
                     .addComponent(loginJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblLoginLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -168,7 +168,7 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         
         else if(system.getUserAccountDirectory().authenticateUser(userNameJTextField.getText(), passwordField.getText()) == null) {
-            JOptionPane.showMessageDialog(null,"Invalid UserName");
+            JOptionPane.showMessageDialog(null,"Invalid Username. Please enter valid username");
             return;
         }
         
@@ -178,8 +178,9 @@ public class MainJFrame extends javax.swing.JFrame {
         System.out.println("EcoSYSTEM MAIN" + system.toString() + system.getUserAccountDirectory().getUserAccountList().size());
         
         CardLayout layout = (CardLayout) container.getLayout();
-        container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, system, customerDirectory, restaurantDirectory, deliveryManDirectory, menuDirectory, orderDirectory));
+        container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, system, customerDirectory, restaurantDirectory, deliveryManDirectory, menuDirectory, orderDirectory, dB4OUtil));
         layout.next(container);
+        lblLoginLabel.setText("<html>\n" + "Welcome!! \n" + "<br/>You are now logged in\n" + "</html>");
         logoutJButton.setEnabled(true);
         loginJButton.setEnabled(false);
         
@@ -193,7 +194,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         userNameJTextField.setText("");
         passwordField.setText("");
-
+        lblLoginLabel.setText("<html>\n" + "Welcome!! \n" + "<br/>Please login to continue\n" + "</html>");
         container.removeAll();
         JPanel blankJP = new JPanel();
         container.add("blank", blankJP);
@@ -244,9 +245,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblLoginLabel;
     private javax.swing.JButton loginJButton;
     private javax.swing.JLabel loginJLabel;
     private javax.swing.JButton logoutJButton;
