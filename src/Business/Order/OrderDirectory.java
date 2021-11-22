@@ -32,6 +32,10 @@ public class OrderDirectory {
         return order;
     }
     
+    public void newOrder(Order order){
+        orderDirectory.add(order);
+    }
+    
     public Order getOrderId(String id){
         for(Order order: orderDirectory){
             if(order.getOrderId().equals(id)){

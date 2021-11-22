@@ -45,9 +45,9 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         for(DeliveryMan dm : ecoSystem.getDeliveryManDirectory().getDeliveryManDirectory()) {
             deliveryManLst.add(dm.getName());
         }
-        String[] deliveryManArray = (String[]) deliveryManLst.toArray();
-        deliveryManCombo = new JComboBox<>(deliveryManArray);
-        //deliveryManCombo = bookList;
+        String[] deliveryManArray = new String[deliveryManLst.size()];
+        deliveryManArray = deliveryManLst.toArray(deliveryManArray);
+        deliveryManCombo.setModel(new javax.swing.DefaultComboBoxModel(deliveryManArray));
         this.userProcessContainer = userProcessContainer;
         this.dB4OUtil = dB4OUtil;
         this.ecoSystem = dB4OUtil.retrieveSystem();
@@ -109,7 +109,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblOrder);
 
-        jLabel1.setFont(new java.awt.Font("Cambria", 1, 32)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 32)); // NOI18N
         jLabel1.setText("Orders");
 
         btnBack.setText("<<");
@@ -122,12 +122,23 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Update Order -");
 
-        statusCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Order Accepted", "Order Rejected", "Order Ready", "Order out on Delivery", "Order Delivered" }));
+        statusCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Order Accepted", "Order Rejected", "Order Ready for pick up", "Order out on Delivery", "Order Delivered" }));
+        statusCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusComboActionPerformed(evt);
+            }
+        });
 
         btnUpdateStatus.setText("Update");
         btnUpdateStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateStatusActionPerformed(evt);
+            }
+        });
+
+        deliveryManCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deliveryManComboActionPerformed(evt);
             }
         });
 
@@ -171,7 +182,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                     .addComponent(deliveryManCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,8 +202,9 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         
         Order order = (Order)tblOrder.getValueAt(selectedRow, 0);
         String orderStatus = order.getOrderStatus();
+        System.out.println("orderStatus----"+orderStatus);
         String status = statusCombo.getSelectedItem().toString();
-        if(status == "Select" || orderStatus.equalsIgnoreCase(status)) {
+        if(status.equalsIgnoreCase("Select") || orderStatus.equalsIgnoreCase(status)) {
             JOptionPane.showMessageDialog(null,"Please select the updated status", "Warining", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -224,14 +236,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
                 return;
             }            
         }
-        else if(order.getOrderStatus().equals("Order Accepted")) {
+/*        else if(order.getOrderStatus().equals("Order Accepted")) {
             order.setOrderStatus("Order Ready for Pick up");
             order.setAssign(true);
         }
         else if(order.getOrderStatus().equals("Order Placed")) {
             JOptionPane.showMessageDialog(null, "Order is should be accepted first");
             return;
-        }
+        }*/
         else {
             JOptionPane.showMessageDialog(null, "Order is already ready for pick up");
             return;
@@ -243,6 +255,14 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         dB4OUtil.storeSystem(ecoSystem);
         populateTable();
     }//GEN-LAST:event_btnUpdateStatusActionPerformed
+    
+    private void deliveryManComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deliveryManComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deliveryManComboActionPerformed
+
+    private void statusComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statusComboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

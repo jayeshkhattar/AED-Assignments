@@ -37,9 +37,9 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     public CreateCustomerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CustomerDirectory customerDirectory, DB4OUtil dB4OUtil) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.ecoSystem = ecoSystem;
-        this.customerDirectory = ecoSystem.getCustomerDirectory();
         this.dB4OUtil = dB4OUtil;
+        this.ecoSystem = dB4OUtil.retrieveSystem();
+        this.customerDirectory = ecoSystem.getCustomerDirectory();
     }
 
     /**
@@ -95,7 +95,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         jLabel6.setText("Address*:");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Phone*:");
+        jLabel7.setText("Phone:");
 
         btnCreate.setText("Save");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +169,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(352, 352, 352)
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +213,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         if(txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() ||
-                txtPhoneNumber.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() ||
+                txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() ||
                 txtHomeAddress.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be left empty");
             return;
@@ -255,21 +255,23 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             }
         }
         
-        String phoneNumber = txtPhoneNumber.getText();
         
-        if(phoneNumber.length() != 10) {
-            JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
-            return;
-        }
-        flag = phoneNumber.matches("^[0-9]+$");
-        if(!flag) {
-            JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
-            return;
-        }
-        for(Customer customer : customerDirectory.getCustomerDirectory()) {
-            if(customer.getPhone().equals(phoneNumber)) {
-                JOptionPane.showMessageDialog(null, "Phone Number already exists");
+        String phoneNumber = txtPhoneNumber.getText();
+        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+            if(phoneNumber.length() != 10) {
+                JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                return;
             }
+            flag = phoneNumber.matches("^[0-9]+$");
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                return;
+            }
+            for(Customer customer : customerDirectory.getCustomerDirectory()) {
+                if(customer.getPhone().equals(phoneNumber)) {
+                    JOptionPane.showMessageDialog(null, "Phone Number already exists");
+                }
+            }            
         }
         
         int age = 0;
@@ -301,7 +303,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         UserAccount usserAccount = ecoSystem.getUserAccountDirectory().createUserAccount(userName, password, employee, new CustomerRole());
         
         JOptionPane.showMessageDialog(null, "Customer Profile Created");
-        dB4OUtil.storeSystem(ecoSystem);
+       // dB4OUtil.storeSystem(ecoSystem);
         btnBackActionPerformed(null);
     }//GEN-LAST:event_btnCreateActionPerformed
 

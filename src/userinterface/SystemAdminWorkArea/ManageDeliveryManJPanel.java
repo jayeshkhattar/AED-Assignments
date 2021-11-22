@@ -211,7 +211,7 @@ public class ManageDeliveryManJPanel extends javax.swing.JPanel {
 
         DeliveryMan deliveryMan = (DeliveryMan) tblDeliveryMan.getValueAt(selectedRow, 0);
         deliveryManDirectory.removeDeliveryMan(deliveryMan);
-//        , DB4OUtil dB4OUtil
+        dB4OUtil.storeSystem(ecoSystem);
         populateTable();
 
     }//GEN-LAST:event_btnDeleteActionPerformed

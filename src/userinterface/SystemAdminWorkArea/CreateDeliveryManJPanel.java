@@ -5,6 +5,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.DeliveryMan.DeliveryMan;
 import Business.DeliveryMan.DeliveryManDirectory;
@@ -267,14 +268,16 @@ public class CreateDeliveryManJPanel extends javax.swing.JPanel {
 
         String phoneNumber = txtPhoneNumber.getText();
 
-        if(phoneNumber.length() != 10) {
-            JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
-            return;
-        }
-        flag = phoneNumber.matches("^[0-9]+$");
-        if(!flag) {
-            JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
-            return;
+        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+            if(phoneNumber.length() != 10) {
+                JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                return;
+            }
+            flag = phoneNumber.matches("^[0-9]+$");
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                return;
+            }
         }
         for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
             if(deliveryMan.getPhone().equals(phoneNumber)) {

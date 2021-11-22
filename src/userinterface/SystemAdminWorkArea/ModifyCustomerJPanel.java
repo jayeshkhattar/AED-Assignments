@@ -197,17 +197,14 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 783, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 799, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 99, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,14 +220,16 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
 
         String phoneNumber = txtPhoneNumber.getText();
 
-        if(phoneNumber.length() != 10) {
-            JOptionPane.showMessageDialog(null, "Phone must be of 10 digits");
-            return;
-        }
-        flag = phoneNumber.matches("^[0-9]+$");
-        if(!flag) {
-            JOptionPane.showMessageDialog(null, "Phone must have digits only");
-            return;
+        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+            if(phoneNumber.length() != 10) {
+                JOptionPane.showMessageDialog(null, "Phone must be of 10 digits");
+                return;
+            }
+            flag = phoneNumber.matches("^[0-9]+$");
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Phone must have digits only");
+                return;
+            }
         }
         for(Customer customer : customerDirectory.getCustomerDirectory()) {
             if(customer.getPhone().equals(phoneNumber) && this.customer != customer) {

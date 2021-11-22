@@ -244,14 +244,16 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
 
         String phoneNumber = txtPhoneNumber.getText();
 
-        if(phoneNumber.length() != 10) {
-            JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
-            return;
-        }
-        flag = phoneNumber.matches("^[0-9]+$");
-        if(!flag) {
-            JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
-            return;
+        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+            if(phoneNumber.length() != 10) {
+                JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                return;
+            }
+            flag = phoneNumber.matches("^[0-9]+$");
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                return;
+            }
         }
         
         for(Restaurant restaurant : restaurantDirectory.getRestaurantDirectory()) {

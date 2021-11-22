@@ -39,9 +39,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.dB4OUtil = dB4OUtil;
-        this.ecoSystem = dB4OUtil.retrieveSystem();
-        this.restaurantDirectory = this.ecoSystem.getRestaurantDirectory();
-        this.menuDirectory = this.ecoSystem.getMenuDirectory();
+        this.ecoSystem = ecoSystem;
+        this.restaurantDirectory = ecoSystem.getRestaurantDirectory();
+        this.menuDirectory = ecoSystem.getMenuDirectory();
         populateTable();
     }
     
@@ -101,7 +101,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblMenu);
 
-        jLabel1.setFont(new java.awt.Font("Cambria", 1, 32)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 32)); // NOI18N
         jLabel1.setText("Manage Menu");
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 20)); // NOI18N
@@ -185,7 +185,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
                     .addComponent(btnAdd))
                 .addGap(49, 49, 49)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,6 +217,7 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         String res = account.getEmployee().getName();
         
         menuDirectory.newItem(itemName, price, res);
+        ecoSystem.setMenuDirectory(menuDirectory);
         dB4OUtil.storeSystem(ecoSystem);
         populateTable();
         
@@ -226,6 +227,9 @@ public class ManageMenuJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        for(Menu m : menuDirectory.getMenuDirectory()) {
+            System.out.println("--bn2---"+m);
+        }
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 

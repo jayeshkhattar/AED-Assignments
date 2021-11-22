@@ -11,6 +11,7 @@ import Business.Organization;
 import Business.UserAccount.UserAccount;
 import Business.Customer.CustomerDirectory;
 import Business.DeliveryMan.DeliveryManDirectory;
+import Business.Menu.Menu;
 import Business.Menu.MenuDirectory;
 import Business.Order.OrderDirectory;
 import Business.Restaurant.RestaurantDirectory;
@@ -48,12 +49,7 @@ public class MainJFrame extends javax.swing.JFrame {
         restaurantDirectory = new RestaurantDirectory();
         deliveryManDirectory = new DeliveryManDirectory();
         menuDirectory = new MenuDirectory();
-        orderDirectory = new OrderDirectory();
-//        system.setDeliveryManDirectory(new DeliveryManDirectory());
-//        system.setMenuDirectory(new MenuDirectory());
-//        system.setRestaurantDirectory(new RestaurantDirectory());
-//        system.setOrderDirectory(new OrderDirectory());
-        
+        orderDirectory = new OrderDirectory();        
     }
 
     /**
@@ -161,7 +157,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-        // Get user name
+        system = dB4OUtil.retrieveSystem();
+
         if(userNameJTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null,"Username and Password field's cannot be empty");
             return;
@@ -174,8 +171,9 @@ public class MainJFrame extends javax.swing.JFrame {
         
         
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userNameJTextField.getText(), passwordField.getText());
+        System.out.println(" Username  " + userNameJTextField.getText() + "--pass-- " + passwordField.getText());
         
-        System.out.println("EcoSYSTEM MAIN" + system.toString() + system.getUserAccountDirectory().getUserAccountList().size());
+        System.out.println("EcoSYSTEM MAIN " + system.toString() +"---"+ system.getUserAccountDirectory().getUserAccountList().size());
         
         CardLayout layout = (CardLayout) container.getLayout();
         container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, system, customerDirectory, restaurantDirectory, deliveryManDirectory, menuDirectory, orderDirectory, dB4OUtil));
@@ -187,6 +185,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
+        for(Menu m : system.getMenuDirectory().getMenuDirectory()) {
+            System.out.println("x---"+m.getItemName());
+        }
+        for(Menu m : system.getMenuDirectory().getMenuDirectory()) {
+            System.out.println("x---"+m.getItemName());
+        }
         logoutJButton.setEnabled(false);
         userNameJTextField.setEnabled(true);
         passwordField.setEnabled(true);
@@ -200,7 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
-        dB4OUtil.storeSystem(system);
+      //  dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void userNameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameJTextFieldActionPerformed

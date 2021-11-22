@@ -10,6 +10,9 @@ import Business.Customer.CustomerDirectory;
 import Business.DB4OUtil.DB4OUtil;
 import javax.swing.JPanel;
 import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Role.CustomerRole;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -31,14 +34,15 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     public ManageCustomerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CustomerDirectory customerDirectory, DB4OUtil dB4OUtil) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.ecoSystem = ecoSystem;
-        this.customerDirectory = ecoSystem.getCustomerDirectory();
         this.dB4OUtil = dB4OUtil;
+        this.ecoSystem = dB4OUtil.retrieveSystem();
+        this.customerDirectory = this.ecoSystem.getCustomerDirectory();
         populateTable();
         
     }
     
     public void populateTable() {
+        ecoSystem = dB4OUtil.retrieveSystem();        
         DefaultTableModel dtm = (DefaultTableModel) tblCustomer.getModel();
         dtm.setRowCount(0);
         for(Customer customer : ecoSystem.getCustomerDirectory().getCustomerDirectory()){
@@ -188,6 +192,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        ecoSystem = dB4OUtil.retrieveSystem();
         int selectedRow = tblCustomer.getSelectedRow();
         if(selectedRow < 0) {
             JOptionPane.showMessageDialog(null,"Please Select a row from table first", "Warining", JOptionPane.WARNING_MESSAGE);
@@ -196,6 +201,14 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
         
         Customer customer = (Customer) tblCustomer.getValueAt(selectedRow, 0);
         customerDirectory.removeCustomer(customer);
+        Employee employee;
+        for(Employee e : ecoSystem.getEmployeeDirectory().getEmployeeList()) {
+            if(e.getName() == customer.getName()) {
+                employee = e;
+                break;
+            }
+        }
+        ecoSystem.getUserAccountDirectory().deleteUserAccount(customer.getUsername()); //.getUserAccountDirectory(). createUserAccount(userName, password, employee, new CustomerRole());
         dB4OUtil.storeSystem(ecoSystem);
         populateTable();
         
