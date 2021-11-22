@@ -192,8 +192,7 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if(txtName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() ||
-            txtPhoneNumber.getText().isEmpty() || txtHomeAddress.getText().isEmpty()) {
+        if(txtName.getText().isEmpty() || txtEmailAddress.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be left empty");
             return;
         }

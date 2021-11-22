@@ -367,7 +367,7 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     private void btnMenuShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuShowActionPerformed
         // TODO add your handling code here:
         if(boxRestaurant.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(null, "Please select a restaurant");
+            JOptionPane.showMessageDialog(null, "Please select a restaurant to continue");
             return;
         }
         populateTable();

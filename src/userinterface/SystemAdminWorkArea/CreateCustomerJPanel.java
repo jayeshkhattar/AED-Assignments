@@ -302,7 +302,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         UserAccount usserAccount = ecoSystem.getUserAccountDirectory().createUserAccount(userName, password, employee, new CustomerRole());
         
         JOptionPane.showMessageDialog(null, "Customer Profile Created");
-       // dB4OUtil.storeSystem(ecoSystem);
+        dB4OUtil.storeSystem(ecoSystem);
         btnBackActionPerformed(null);
     }//GEN-LAST:event_btnCreateActionPerformed
 

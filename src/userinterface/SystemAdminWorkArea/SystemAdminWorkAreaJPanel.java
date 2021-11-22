@@ -50,6 +50,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         //System.out.println("EcoSYSTEM MAIN" + ecosystem.toString() + ecosystem.getCustomerDirectory().getCustomerDirectory().size());
     }
     
+    public void populateOnBack(DB4OUtil dB4OUtil) {
+        this.dB4OUtil = dB4OUtil;
+        this.ecosystem = dB4OUtil.retrieveSystem();
+        this.customerDirectory = this.ecosystem.getCustomerDirectory();
+        this.deliveryManDirectory = this.ecosystem.getDeliveryManDirectory();
+        this.restaurantDirectory = this.ecosystem.getRestaurantDirectory();
+        populateTreeData();
+    }
+    
     public void populateTreeData(){
         DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
                

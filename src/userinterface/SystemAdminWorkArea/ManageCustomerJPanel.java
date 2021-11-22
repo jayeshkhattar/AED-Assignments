@@ -14,6 +14,7 @@ import Business.Employee.Employee;
 import Business.Role.CustomerRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -215,9 +216,14 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+
+
         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        SystemAdminWorkAreaJPanel mcjp = (SystemAdminWorkAreaJPanel) component;
+        mcjp.populateOnBack(dB4OUtil);
         layout.previous(userProcessContainer);
         
     }//GEN-LAST:event_btnBackActionPerformed

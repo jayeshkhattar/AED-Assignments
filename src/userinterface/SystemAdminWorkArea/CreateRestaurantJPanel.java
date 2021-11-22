@@ -230,14 +230,14 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
         flag = restaurantName.matches("^[a-zA-Z]+$");
 
         if(flag == false) {
-            JOptionPane.showMessageDialog(null, "First name cannot have integer values");
+            JOptionPane.showMessageDialog(null, "Restaurant name should have alphabetic values");
             return;
         }
 
         flag = managerName.matches("^[a-zA-Z]+$");
 
         if(!flag) {
-            JOptionPane.showMessageDialog(null, "Last name cannot have integer values");
+            JOptionPane.showMessageDialog(null, "Manager name should have alphabetic values");
             return;
         }
 
@@ -246,12 +246,12 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
 
             if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
                 if(phoneNumber.length() != 10) {
-                    JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                    JOptionPane.showMessageDialog(null, "Phone must be of 10 digits");
                     return;
                 }
                 flag = phoneNumber.matches("^[0-9]+$");
                 if(!flag) {
-                    JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                    JOptionPane.showMessageDialog(null, "Phone must have digits only");
                     return;
                 }
             }
