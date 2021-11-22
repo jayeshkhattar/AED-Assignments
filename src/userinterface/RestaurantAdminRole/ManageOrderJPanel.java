@@ -251,7 +251,7 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
             else {
                 JOptionPane.showMessageDialog(null,"Please update correct status", "Warining", JOptionPane.WARNING_MESSAGE);
                 return;
-            }            
+            }
         }
         else {
             JOptionPane.showMessageDialog(null, "We will check on order. Please wait.");
@@ -274,10 +274,15 @@ public class ManageOrderJPanel extends javax.swing.JPanel {
         btnAssignDriver.setVisible(false);
         btnUpdateStatus.setEnabled(true);
         statusCombo.setEnabled(true);
-        statusCombo.setSelectedItem(Order.orderOnDelivery);
+        //statusCombo.setSelectedItem(Order.orderOnDelivery);
         Order order = (Order)tblOrder.getValueAt(ord, 0);
-//        for()
-        order.setOrderStatus(Order.orderOnDelivery);
+        for(DeliveryMan dm : ecoSystem.getDeliveryManDirectory().getDeliveryManDirectory()) {
+            if(dm.getName().equals(deliveryManCombo.getSelectedItem().toString())) {
+                order.setDeliveryMan(dm.getEmail());
+                break;
+            }
+        }
+//        order.setOrderStatus(Order.orderOnDelivery);
         dB4OUtil.storeSystem(ecoSystem);
         populateTable();        
     }//GEN-LAST:event_btnAssignDriverActionPerformed

@@ -349,7 +349,9 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
         //Order order = new Order();
         Order order = ecoSystem.getOrderDirectory().newOrder();
         order.setCustomer(customer);
-        order.setOrderId(String.valueOf(count++));
+        int cnt = ecoSystem.getOrderDirectory().getOrderDirectory().size();
+        cnt++;
+        order.setOrderId(String.valueOf(cnt));
         order.setQuantity(quantity);
         order.setMenu(menu);
         order.setRestaurant(restaurant);
