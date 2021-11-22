@@ -64,15 +64,17 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) tblItem.getModel();
         dtm.setRowCount(0);
+        if(boxRestaurant.getSelectedItem() != null) {
         String restaurantName = boxRestaurant.getSelectedItem().toString();
-        Restaurant restaurant = ecoSystem.getRestaurantDirectory().getRestaurant(restaurantName);
-        for(Menu menu : ecoSystem.getMenuDirectory().getMenuDirectory()){
-            if(restaurant.getRestaurantName().equals(menu.getRestaurantName())) {
-                Object [] row = new Object[2];
-                row[0] = menu;
-                row[1] = menu.getItemPrice();
-                dtm.addRow(row);
-            }
+            Restaurant restaurant = ecoSystem.getRestaurantDirectory().getRestaurant(restaurantName);
+            for(Menu menu : ecoSystem.getMenuDirectory().getMenuDirectory()){
+                if(restaurant.getRestaurantName().equals(menu.getRestaurantName())) {
+                    Object [] row = new Object[2];
+                    row[0] = menu;
+                    row[1] = menu.getItemPrice();
+                    dtm.addRow(row);
+                }
+            }            
         }
     }
     
@@ -193,7 +195,15 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
             new String [] {
                 "Item Name", "Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblItem);
 
         boxRestaurant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

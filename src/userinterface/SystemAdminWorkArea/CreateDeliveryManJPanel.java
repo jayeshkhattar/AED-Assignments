@@ -100,10 +100,10 @@ public class CreateDeliveryManJPanel extends javax.swing.JPanel {
         jLabel5.setText("Age*:");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Address*:");
+        jLabel6.setText("Address:");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Phone*:");
+        jLabel7.setText("Phone:");
 
         btnCreate.setText("Save");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -223,8 +223,7 @@ public class CreateDeliveryManJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         if(txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() ||
-            txtPhoneNumber.getText().isEmpty() || txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() ||
-            txtHomeAddress.getText().isEmpty()) {
+            txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be left empty");
             return;
         }
@@ -267,25 +266,26 @@ public class CreateDeliveryManJPanel extends javax.swing.JPanel {
         }
 
         String phoneNumber = txtPhoneNumber.getText();
+        if(!txtPhoneNumber.getText().isEmpty() ) {
 
-        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
-            if(phoneNumber.length() != 10) {
-                JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
-                return;
+            if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+                if(phoneNumber.length() != 10) {
+                    JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                    return;
+                }
+                flag = phoneNumber.matches("^[0-9]+$");
+                if(!flag) {
+                    JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                    return;
+                }
             }
-            flag = phoneNumber.matches("^[0-9]+$");
-            if(!flag) {
-                JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
-                return;
+            for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
+                if(deliveryMan.getPhone().equals(phoneNumber)) {
+                    JOptionPane.showMessageDialog(null, "Phone Number already exists");
+                    return;
+                }
             }
         }
-        for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
-            if(deliveryMan.getPhone().equals(phoneNumber)) {
-                JOptionPane.showMessageDialog(null, "Phone Number already exists");
-                return;
-            }
-        }
-
         int age = 0;
 
         try {

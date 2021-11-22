@@ -69,7 +69,7 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 51));
 
         jLabel1.setFont(new java.awt.Font("Candara", 1, 32)); // NOI18N
-        jLabel1.setText("Update DeliveryMan");
+        jLabel1.setText("Update Delivery Man");
 
         btnBack.setText("<<");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +92,10 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
         jLabel5.setText("Age*:");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Address*:");
+        jLabel6.setText("Address:");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Phone Number*:");
+        jLabel7.setText("Phone:");
 
         btnUpdate.setText("Save");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -133,15 +133,13 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
                                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(73, 73, 73)
-                                        .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(73, 73, 73)
-                                        .addComponent(txtHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(73, 73, 73)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtHomeAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(318, 318, 318)
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,22 +201,23 @@ public class ModifyDeliveryManJPanel extends javax.swing.JPanel {
         boolean flag ;
 
         String phoneNumber = txtPhoneNumber.getText();
+        if(!txtPhoneNumber.getText().isEmpty() ) {
 
-        if(phoneNumber.length() != 10) {
-            JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
-            return;
-        }
-        flag = phoneNumber.matches("^[0-9]+$");
-        if(!flag) {
-            JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
-            return;
-        }
-        for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
-            if(deliveryMan.getPhone().equals(phoneNumber) && this.deliveryMan != deliveryMan) {
-                JOptionPane.showMessageDialog(null, "Phone Number already exists");
+            if(phoneNumber.length() != 10) {
+                JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                return;
+            }
+            flag = phoneNumber.matches("^[0-9]+$");
+            if(!flag) {
+                JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                return;
+            }
+            for(DeliveryMan deliveryMan : deliveryManDirectory.getDeliveryManDirectory()) {
+                if(deliveryMan.getPhone().equals(phoneNumber) && this.deliveryMan != deliveryMan) {
+                    JOptionPane.showMessageDialog(null, "Phone Number already exists");
+                }
             }
         }
-
         int age = 0;
 
         try {

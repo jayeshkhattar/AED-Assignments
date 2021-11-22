@@ -83,7 +83,7 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
         jLabel6.setText("Manager Name*:");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Phone*:");
+        jLabel7.setText("Phone:");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Address*:");
@@ -177,7 +177,6 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
                                             .addComponent(jLabel2))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +216,7 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        if(txtRestaurantName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtPhoneNumber.getText().isEmpty() || 
+        if(txtRestaurantName.getText().isEmpty() || txtAddress.getText().isEmpty() || 
                 txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() || txtManagerName.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be left empty");
             return;
@@ -243,26 +242,27 @@ public class CreateRestaurantJPanel extends javax.swing.JPanel {
         }
 
         String phoneNumber = txtPhoneNumber.getText();
+        if(!txtPhoneNumber.getText().isEmpty() ) {
 
-        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
-            if(phoneNumber.length() != 10) {
-                JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
-                return;
+            if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+                if(phoneNumber.length() != 10) {
+                    JOptionPane.showMessageDialog(null, "PhoneNumber must be of 10 digits");
+                    return;
+                }
+                flag = phoneNumber.matches("^[0-9]+$");
+                if(!flag) {
+                    JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
+                    return;
+                }
             }
-            flag = phoneNumber.matches("^[0-9]+$");
-            if(!flag) {
-                JOptionPane.showMessageDialog(null, "Phone Number must have digits only");
-                return;
+
+            for(Restaurant restaurant : restaurantDirectory.getRestaurantDirectory()) {
+                if(restaurant.getPhoneNumber().equals(phoneNumber)) {
+                    JOptionPane.showMessageDialog(null, "Phone Number already exists");
+                    return;
+                }
             }
         }
-        
-        for(Restaurant restaurant : restaurantDirectory.getRestaurantDirectory()) {
-            if(restaurant.getPhoneNumber().equals(phoneNumber)) {
-                JOptionPane.showMessageDialog(null, "Phone Number already exists");
-                return;
-            }
-        }
-
 
         String address = txtAddress.getText();
         String userName = txtUsername.getText();

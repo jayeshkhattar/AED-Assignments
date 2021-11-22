@@ -92,7 +92,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         jLabel5.setText("Age*:");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Address*:");
+        jLabel6.setText("Address:");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Phone:");
@@ -169,7 +169,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(352, 352, 352)
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +213,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
         if(txtFirstName.getText().isEmpty() || txtLastName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() ||
-                txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty() ||
-                txtHomeAddress.getText().isEmpty()) {
+                txtUsername.getText().isEmpty() || txtPassword.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be left empty");
             return;
         }

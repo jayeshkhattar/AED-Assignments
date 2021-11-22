@@ -92,7 +92,7 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
         jLabel6.setText("Address*:");
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Phone Number*:");
+        jLabel7.setText("Phone:");
 
         txtName.setEditable(false);
 
@@ -210,8 +210,7 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        if(txtName.getText().isEmpty() || txtEmailAddress.getText().isEmpty() ||
-            txtPhoneNumber.getText().isEmpty() || txtHomeAddress.getText().isEmpty()) {
+        if(txtName.getText().isEmpty() || txtEmailAddress.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Fields cannot be left empty");
             return;
         }
@@ -219,24 +218,25 @@ public class ModifyCustomerJPanel extends javax.swing.JPanel {
         boolean flag ;
 
         String phoneNumber = txtPhoneNumber.getText();
+        if(!txtPhoneNumber.getText().isEmpty() ) {
 
-        if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
-            if(phoneNumber.length() != 10) {
-                JOptionPane.showMessageDialog(null, "Phone must be of 10 digits");
-                return;
+            if(!phoneNumber.isBlank() && !phoneNumber.isEmpty()) {
+                if(phoneNumber.length() != 10) {
+                    JOptionPane.showMessageDialog(null, "Phone must be of 10 digits");
+                    return;
+                }
+                flag = phoneNumber.matches("^[0-9]+$");
+                if(!flag) {
+                    JOptionPane.showMessageDialog(null, "Phone must have digits only");
+                    return;
+                }
             }
-            flag = phoneNumber.matches("^[0-9]+$");
-            if(!flag) {
-                JOptionPane.showMessageDialog(null, "Phone must have digits only");
-                return;
+            for(Customer customer : customerDirectory.getCustomerDirectory()) {
+                if(customer.getPhone().equals(phoneNumber) && this.customer != customer) {
+                    JOptionPane.showMessageDialog(null, "Phone Number already exists");
+                }
             }
         }
-        for(Customer customer : customerDirectory.getCustomerDirectory()) {
-            if(customer.getPhone().equals(phoneNumber) && this.customer != customer) {
-                JOptionPane.showMessageDialog(null, "Phone Number already exists");
-            }
-        }
-
         int age = 0;
 
         try {

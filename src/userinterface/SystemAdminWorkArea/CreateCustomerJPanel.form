@@ -174,7 +174,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Address*:"/>
+        <Property name="text" type="java.lang.String" value="Address:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">

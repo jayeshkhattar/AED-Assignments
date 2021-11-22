@@ -49,17 +49,14 @@
                                   <Component id="txtEmailAddress" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
-                                      <Component id="txtPhoneNumber" min="-2" pref="165" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel6" min="-2" pref="84" max="-2" attributes="0"/>
-                                      <EmptySpace min="73" pref="73" max="-2" attributes="0"/>
-                                      <Component id="txtHomeAddress" min="-2" pref="165" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="84" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtHomeAddress" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="txtPhoneNumber" min="-2" pref="165" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -119,7 +116,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Candara" size="32" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Update DeliveryMan"/>
+        <Property name="text" type="java.lang.String" value="Update Delivery Man"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
@@ -163,7 +160,7 @@
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Address*:"/>
+        <Property name="text" type="java.lang.String" value="Address:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtHomeAddress">
@@ -171,7 +168,7 @@
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="Phone Number*:"/>
+        <Property name="text" type="java.lang.String" value="Phone:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPhoneNumber">
